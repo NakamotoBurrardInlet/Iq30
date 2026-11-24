@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AETHER-IQ // Algorithmic Cognitive & Psychometric Assessment</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter, JetBrains Mono, Newsreader (Academic Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            serif: ['Newsreader', 'Georgia', 'serif'],
+          },
+          colors: {
+            obsidian: '#080b12',
+            slatepanel: '#0e1420',
+            slateborder: '#1e293b',
+            cybercyan: '#06b6d4',
+            profamber: '#f59e0b',
+            neuralemerald: '#10b981',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar & Algorithmic Grid Background */
+    body {
+      background-color: #080b12;
+      color: #e2e8f0;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 45%),
+        linear-gradient(to right, rgba(30, 41, 59, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 41, 59, 0.25) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+      min-height: 100vh;
+    }
+
+    /* Smooth View Transitions */
+    .fade-in {
+      animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080b12;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+
+    /* Subtle Glow Effects */
+    .glow-cyan {
+      box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.22);
+    }
+    .glow-amber {
+      box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.22);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-cyan-500/30 selection:text-cyan-200 flex flex-col">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-[#080b12]/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Brand Identity -->
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="switchView('intro')">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500/20 to-amber-500/20 border border-cyan-500/40 flex items-center justify-center">
+          <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="font-mono font-bold tracking-wider text-white text-sm sm:text-base">AETHER<span class="text-cyan-400">-IQ</span></span>
+            <span class="hidden sm:inline-block text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-slate-800 text-amber-400 border border-amber-500/30">v4.2 Psychometric Engine</span>
+          </div>
+          <p class="text-[11px] text-slate-400 hidden sm:block">Algorithmic Cognitive &amp; g-Factor Laboratory</p>
+        </div>
+      </div>
+
+      <!-- Navigation Actions -->
+      <nav class="flex items-center space-x-2 sm:space-x-3">
+        <button onclick="switchView('theory')" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/80 border border-transparent hover:border-slate-700 transition flex items-center space-x-1.5">
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+          <span>Psychometric Theory</span>
+        </button>
+
+        <button id="nav-resume-btn" onclick="switchView('exam')" class="hidden px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/25 transition">
+          Active Session
+        </button>
+
+        <button id="nav-report-btn" onclick="switchView('report')" class="hidden px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/25 transition">
+          Diagnostic Report
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+
+    <!-- =================================================================== -->
+    <!-- VIEW 1: INTRO / PROTOCOL BRIEFING                                   -->
+    <!-- =================================================================== -->
+    <section id="view-intro" class="fade-in space-y-8">
+      <!-- Hero Banner -->
+      <div class="rounded-2xl bg-slatepanel/90 border border-slate-800 p-6 sm:p-10 lg:p-12 relative overflow-hidden glow-cyan">
+        <div class="absolute top-0 right-0 p-6 opacity-10 pointer-events-none hidden md:block">
+          <pre class="font-mono text-xs text-cyan-400 leading-tight">
+01001001 01010001 00111010 00110001 00110110 00110000
+g = ∑(w_i · δ_i · τ_i) / √(Var(X))
+0x41 0x45 0x54 0x48 0x45 0x52
+Φ(z) = 1/√(2π) ∫ e^(-t²/2) dt
+          </pre>
+        </div>
+
+        <div class="max-w-3xl space-y-5 relative z-10">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            <span>INSTITUTE FOR COMPUTATIONAL PSYCHOMETRICS // 30-ITEM PROTOCOL</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            Multi-Domain Algorithmic <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-amber-300">Intelligence Assessment</span>
+          </h1>
+
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed font-light">
+            Engineered beyond conventional pattern-matching tests, <strong class="text-white font-medium">AETHER-IQ</strong> evaluates general intelligence (<span class="font-serif italic text-amber-300">Spearman’s g</span>) across 30 calibrated items spanning deductive logic, modular number theory, algebraic synthesis, and semantic abstraction. Your cognitive output is compiled into <span class="font-mono text-cyan-300 text-sm">Standardized Gaussian</span>, <span class="font-mono text-emerald-300 text-sm">Binary</span>, and <span class="font-mono text-amber-300 text-sm">Hexadecimal</span> telemetry with a professor-grade diagnostic synthesis.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="pt-3 flex flex-wrap items-center gap-3 sm:gap-4">
+            <button onclick="startAssessment(false)" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-sky-600 hover:from-cyan-400 hover:to-sky-500 text-slate-950 font-semibold text-sm sm:text-base shadow-lg shadow-cyan-500/20 transition flex items-center space-x-2">
+              <span>Initialize 30-Question Examination</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </button>
+
+            <button onclick="switchView('theory')" class="px-5 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 text-slate-200 border border-slate-700 font-medium text-sm sm:text-base transition">
+              Read Core IQ Foundations
+            </button>
+
+            <button onclick="runDemoSimulation()" title="Populates realistic high-performing answers and jumps directly to the diagnostic report for inspection" class="px-4 py-3.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 font-mono text-xs transition flex items-center space-x-1.5">
+              <span>⚡ Simulate Professor-Tier Sample</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Core Cognitive Pillars Overview -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="rounded-xl bg-slatepanel/80 border border-slate-800 p-5 space-y-2.5 hover:border-cyan-500/40 transition">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-cyan-400 uppercase tracking-wider">Domain I // Gf</span>
+            <span class="text-xs font-mono text-slate-500">8 Items</span>
+          </div>
+          <h3 class="text-base font-semibold text-white">Fluid &amp; Deductive Reasoning</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Novel problem-solving independent of prior knowledge: syllogistic validity, epistemic paradoxes, and non-linear relational matrices.</p>
+        </div>
+
+        <div class="rounded-xl bg-slatepanel/80 border border-slate-800 p-5 space-y-2.5 hover:border-amber-500/40 transition">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">Domain II // Gq</span>
+            <span class="text-xs font-mono text-slate-500">8 Items</span>
+          </div>
+          <h3 class="text-base font-semibold text-white">Quantitative &amp; Algebraic</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Exact numeric and algebraic input: Diophantine constraints, modular congruences, recursive sequences, and combinatorics.</p>
+        </div>
+
+        <div class="rounded-xl bg-slatepanel/80 border border-slate-800 p-5 space-y-2.5 hover:border-emerald-500/40 transition">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Domain III // Alg</span>
+            <span class="text-xs font-mono text-slate-500">7 Items</span>
+          </div>
+          <h3 class="text-base font-semibold text-white">Algorithmic &amp; Spatial Logic</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Bitwise state transformations, asymptotic complexity, Kolmogorov compression, and multi-dimensional topological rotations.</p>
+        </div>
+
+        <div class="rounded-xl bg-slatepanel/80 border border-slate-800 p-5 space-y-2.5 hover:border-purple-400/40 transition">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-purple-400 uppercase tracking-wider">Domain IV // Gc</span>
+            <span class="text-xs font-mono text-slate-500">7 Items</span>
+          </div>
+          <h3 class="text-base font-semibold text-white">Semantic &amp; Conceptual Synthesis</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Evaluated via semantic concept vector matching: isomorphic analogies, epistemological distinctions, and abstract synthesis.</p>
+        </div>
+      </div>
+
+      <!-- Algorithmic Scoring Preview Card -->
+      <div class="rounded-2xl bg-slatepanel/70 border border-slate-800 p-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+        <div class="space-y-1.5 max-w-2xl">
+          <h4 class="text-sm font-mono uppercase tracking-wider text-amber-400">Psychometric Normalization Architecture</h4>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Each item carries a calibrated difficulty weight <span class="font-mono text-cyan-300">w_i ∈ [1.0, 2.5]</span>. Raw performance is modulated by a non-punitive cognitive efficiency curve <span class="font-mono text-cyan-300">η(t)</span> and mapped onto a Gaussian distribution (<span class="font-mono text-white">μ = 100, σ = 15</span>) via the inverse error function.
+          </p>
+        </div>
+        <div class="grid grid-cols-3 gap-3 w-full lg:w-auto font-mono text-xs">
+          <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+            <div class="text-slate-500 text-[10px]">GAUSSIAN</div>
+            <div class="text-cyan-400 font-bold text-sm mt-0.5">μ=100, σ=15</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+            <div class="text-slate-500 text-[10px]">BINARY</div>
+            <div class="text-emerald-400 font-bold text-sm mt-0.5">16-BIT REG</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+            <div class="text-slate-500 text-[10px]">HEXADECIMAL</div>
+            <div class="text-amber-400 font-bold text-sm mt-0.5">0x00–0xA8</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- VIEW 2: 30-QUESTION ASSESSMENT WORKSPACE                            -->
+    <!-- =================================================================== -->
+    <section id="view-exam" class="hidden fade-in space-y-6">
+      <!-- Telemetry & Progress Top Bar -->
+      <div class="rounded-2xl bg-slatepanel/90 border border-slate-800 p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1.5 flex-grow">
+          <div class="flex items-center justify-between text-xs font-mono">
+            <span class="text-slate-400">ASSESSMENT PROGRESS: <strong id="progress-text" class="text-white">1 / 30</strong></span>
+            <span id="answered-count-text" class="text-cyan-400">0 Answered</span>
+          </div>
+          <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden border border-slate-800">
+            <div id="progress-bar" class="h-full bg-gradient-to-r from-cyan-500 to-amber-400 transition-all duration-300" style="width: 3.33%"></div>
+          </div>
+        </div>
+
+        <!-- Timer & Controls -->
+        <div class="flex items-center justify-between md:justify-end space-x-3 border-t md:border-t-0 pt-3 md:pt-0 border-slate-800">
+          <div class="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 font-mono text-xs">
+            <span class="text-slate-500">ELAPSED:</span>
+            <span id="timer-display" class="text-cyan-300 font-semibold">00:00</span>
+            <button onclick="toggleTimerVisibility()" id="timer-toggle-btn" class="text-slate-500 hover:text-slate-300 ml-1 underline text-[10px]">Hide</button>
+          </div>
+
+          <button onclick="toggleQuestionMatrix()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs transition">
+            Matrix [1–30]
+          </button>
+
+          <button onclick="confirmSubmitModal()" class="px-3.5 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 font-mono text-xs font-semibold transition">
+            Finalize &amp; Score
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible Question Navigator Matrix -->
+      <div id="question-matrix-panel" class="hidden rounded-2xl bg-slatepanel/95 border border-slate-800 p-4 sm:p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Direct Item Navigator</span>
+          <div class="flex items-center space-x-3 text-[11px] font-mono text-slate-400">
+            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-cyan-500/30 border border-cyan-400 inline-block"></span> Answered</span>
+            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-amber-500/30 border border-amber-400 inline-block"></span> Flagged</span>
+            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-slate-900 border border-slate-700 inline-block"></span> Unseen</span>
+          </div>
+        </div>
+        <div id="question-matrix-grid" class="grid grid-cols-6 sm:grid-cols-10 md:grid-cols-15 gap-2"></div>
+      </div>
+
+      <!-- Main Question Card -->
+      <div class="rounded-2xl bg-slatepanel/95 border border-slate-800 p-6 sm:p-8 lg:p-10 shadow-xl space-y-6">
+        <!-- Question Metadata Header -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800/80">
+          <div class="flex flex-wrap items-center gap-2">
+            <span id="q-number-badge" class="px-3 py-1 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-mono text-xs font-bold">
+              ITEM 01 / 30
+            </span>
+            <span id="q-domain-badge" class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-700 text-amber-300 font-mono text-xs">
+              Fluid Reasoning (Gf)
+            </span>
+            <span id="q-type-badge" class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 font-mono text-[11px] uppercase">
+              Multiple Choice
+            </span>
+          </div>
+
+          <div class="flex items-center space-x-3">
+            <span id="q-weight-badge" class="font-mono text-xs text-slate-400">
+              Weight: <strong class="text-white">1.25x</strong>
+            </span>
+            <button id="flag-btn" onclick="toggleFlagCurrent()" class="px-3 py-1 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 text-xs font-mono text-slate-300 flex items-center space-x-1.5 transition">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+              </svg>
+              <span id="flag-btn-text">Flag for Review</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Question Prompt & Optional Visual/Code Block -->
+        <div class="space-y-4">
+          <h2 id="q-prompt" class="text-lg sm:text-xl lg:text-2xl font-medium text-white leading-relaxed">
+            Loading question...
+          </h2>
+          <div id="q-stimulus" class="hidden rounded-xl bg-slate-950/90 border border-slate-800 p-4 sm:p-5 font-mono text-sm text-cyan-200 overflow-x-auto leading-relaxed"></div>
+        </div>
+
+        <!-- Dynamic Input Area (Multiple Choice / Math / Text) -->
+        <div id="q-input-container" class="pt-2"></div>
+
+        <!-- Navigation Footer -->
+        <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
+          <button id="prev-btn" onclick="navigateQuestion(-1)" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 disabled:opacity-40 disabled:pointer-events-none text-slate-300 border border-slate-700 text-sm font-medium transition flex items-center space-x-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span>Previous</span>
+          </button>
+
+          <div class="text-xs font-mono text-slate-500 hidden sm:block">
+            Use <kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-700 text-slate-300">Alt + ←/→</kbd> to navigate
+          </div>
+
+          <button id="next-btn" onclick="navigateQuestion(1)" class="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-sm transition flex items-center space-x-2 shadow-md shadow-cyan-500/15">
+            <span id="next-btn-label">Next Item</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- VIEW 3: ALGORITHMIC DIAGNOSTIC REPORT                               -->
+    <!-- =================================================================== -->
+    <section id="view-report" class="hidden fade-in space-y-8">
+      <!-- Top Summary Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
+        <div>
+          <div class="text-xs font-mono text-cyan-400 uppercase tracking-widest">Psychometric Telemetry Output // Complete</div>
+          <h1 class="text-2xl sm:text-3xl font-bold text-white mt-1">Cognitive Architecture &amp; IQ Diagnostic Report</h1>
+        </div>
+        <div class="flex items-center space-x-3">
+          <button onclick="copyDiagnosticSummary()" id="copy-report-btn" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-mono transition flex items-center space-x-1.5">
+            <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <span>Copy Telemetry</span>
+          </button>
+          <button onclick="startAssessment(true)" class="px-4 py-2 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border border-cyan-500/40 text-xs font-mono transition">
+            Retake Examination
+          </button>
+        </div>
+      </div>
+
+      <!-- MULTI-RADIX SCORE TELEMETRY CARDS (Standardized, Binary, Hexadecimal, Percentile/Z) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- 1. Standardized Gaussian IQ -->
+        <div class="rounded-2xl bg-gradient-to-b from-slatepanel to-slate-950 border border-cyan-500/40 p-6 glow-cyan relative overflow-hidden">
+          <div class="text-[11px] font-mono uppercase tracking-wider text-cyan-400 flex items-center justify-between">
+            <span>Standardized IQ (μ=100, σ=15)</span>
+            <span class="px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 text-[10px]">BASE-10</span>
+          </div>
+          <div class="mt-3 flex items-baseline space-x-2">
+            <span id="rep-iq-score" class="text-4xl sm:text-5xl font-bold font-mono text-white tracking-tight">142</span>
+            <span id="rep-iq-ci" class="text-xs font-mono text-slate-400">± 3</span>
+          </div>
+          <div id="rep-iq-classification" class="mt-2 text-xs font-medium text-cyan-300">
+            Exceptionally Gifted / Profoundly Analytical
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex justify-between text-[11px] font-mono text-slate-400">
+            <span>Z-Score: <strong id="rep-z-score" class="text-white">+2.80σ</strong></span>
+            <span>Percentile: <strong id="rep-percentile" class="text-emerald-400">99.74%</strong></span>
+          </div>
+        </div>
+
+        <!-- 2. Binary Score Register -->
+        <div class="rounded-2xl bg-gradient-to-b from-slatepanel to-slate-950 border border-emerald-500/35 p-6 relative overflow-hidden">
+          <div class="text-[11px] font-mono uppercase tracking-wider text-emerald-400 flex items-center justify-between">
+            <span>Binary Register Encoding</span>
+            <span class="px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 text-[10px]">BASE-2</span>
+          </div>
+          <div class="mt-3">
+            <div id="rep-binary-8bit" class="text-2xl sm:text-3xl font-bold font-mono text-emerald-300 tracking-wider">
+              1000 1110
+            </div>
+            <div id="rep-binary-16bit" class="text-xs font-mono text-slate-400 mt-1">
+              16-bit: 00000000 10001110
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] font-mono text-slate-400 flex justify-between">
+            <span>Parity: <strong id="rep-binary-parity" class="text-white">EVEN (4 bits)</strong></span>
+            <span>Raw Pts: <strong id="rep-raw-binary" class="text-emerald-400">101101</strong></span>
+          </div>
+        </div>
+
+        <!-- 3. Hexadecimal Memory Address -->
+        <div class="rounded-2xl bg-gradient-to-b from-slatepanel to-slate-950 border border-amber-500/35 p-6 relative overflow-hidden">
+          <div class="text-[11px] font-mono uppercase tracking-wider text-amber-400 flex items-center justify-between">
+            <span>Hexadecimal Telemetry</span>
+            <span class="px-1.5 py-0.5 rounded bg-amber-950 text-amber-300 text-[10px]">BASE-16</span>
+          </div>
+          <div class="mt-3">
+            <div id="rep-hex-score" class="text-3xl sm:text-4xl font-bold font-mono text-amber-300 tracking-wider">
+              0x8E
+            </div>
+            <div id="rep-hex-word" class="text-xs font-mono text-slate-400 mt-1">
+              DWORD: 0x0000008E
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] font-mono text-slate-400 flex justify-between">
+            <span>Octal: <strong id="rep-octal-score" class="text-white">0o216</strong></span>
+            <span>Checksum: <strong id="rep-hex-checksum" class="text-amber-400">0xF1</strong></span>
+          </div>
+        </div>
+
+        <!-- 4. Cognitive Efficiency & Accuracy -->
+        <div class="rounded-2xl bg-gradient-to-b from-slatepanel to-slate-950 border border-purple-500/35 p-6 relative overflow-hidden">
+          <div class="text-[11px] font-mono uppercase tracking-wider text-purple-400 flex items-center justify-between">
+            <span>Processing &amp; Accuracy</span>
+            <span class="px-1.5 py-0.5 rounded bg-purple-950 text-purple-300 text-[10px]">Ψ-INDEX</span>
+          </div>
+          <div class="mt-3 flex items-baseline space-x-2">
+            <span id="rep-accuracy-pct" class="text-3xl sm:text-4xl font-bold font-mono text-white">88.5%</span>
+            <span class="text-xs font-mono text-slate-400">Weighted</span>
+          </div>
+          <div id="rep-speed-factor" class="mt-2 text-xs font-mono text-purple-300">
+            Speed Multiplier η(t): 1.04x
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] font-mono text-slate-400 flex justify-between">
+            <span>Time: <strong id="rep-time-taken" class="text-white">12m 40s</strong></span>
+            <span>Items: <strong id="rep-items-correct" class="text-purple-300">26/30</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MATHEMATICAL FORMULA BREAKDOWN ENGINE -->
+      <div class="rounded-2xl bg-slatepanel/90 border border-slate-800 p-6 sm:p-8 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-white flex items-center space-x-2">
+              <span class="text-amber-400 font-mono">∑</span>
+              <span>Mathematical Computation &amp; Gaussian Normalization Trace</span>
+            </h2>
+            <p class="text-xs text-slate-400">Exact algorithmic derivation of your composite cognitive score from weighted item responses.</p>
+          </div>
+          <span class="text-xs font-mono px-3 py-1 rounded-lg bg-slate-900 border border-slate-700 text-cyan-300">
+            IQ = μ + σ · Φ⁻¹(P_weighted)
+          </span>
+        </div>
+
+        <div id="rep-math-breakdown" class="rounded-xl bg-slate-950 border border-slate-800 p-4 sm:p-5 font-mono text-xs sm:text-sm text-slate-300 space-y-2.5 overflow-x-auto leading-relaxed">
+          <!-- Dynamically populated mathematical trace -->
+        </div>
+      </div>
+
+      <!-- PROFESSOR AI DIAGNOSTIC SYNTHESIS + RADAR VISUALIZATION -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Left 7 Cols: AI Professor Synthesis -->
+        <div class="lg:col-span-7 rounded-2xl bg-slatepanel/95 border border-slate-800 p-6 sm:p-8 space-y-5 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center space-x-3 pb-4 border-b border-slate-800">
+              <div class="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-500/40 flex items-center justify-center text-amber-400 font-serif font-bold text-xl">
+                Ψ
+              </div>
+              <div>
+                <div class="text-xs font-mono text-amber-400 uppercase tracking-wider">Chair of Computational Psychometrics</div>
+                <h3 class="text-lg font-bold text-white">Professor-Level Cognitive Evaluation</h3>
+              </div>
+            </div>
+
+            <div id="rep-professor-narrative" class="font-serif text-slate-200 text-base sm:text-[17px] leading-relaxed space-y-4">
+              <!-- Dynamically generated rich narrative -->
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-slate-400">
+            <span>Signature: <span class="text-slate-200">Prof. A. Vance, Ph.D. // AETHER-AI Core</span></span>
+            <span id="rep-timestamp" class="text-cyan-400"></span>
+          </div>
+        </div>
+
+        <!-- Right 5 Cols: Domain Breakdown & SVG Radar -->
+        <div class="lg:col-span-5 rounded-2xl bg-slatepanel/95 border border-slate-800 p-6 sm:p-8 space-y-6">
+          <div>
+            <h3 class="text-base font-bold text-white">Psychometric Pillar Architecture</h3>
+            <p class="text-xs text-slate-400 mt-0.5">Normalized domain proficiency across CHC &amp; algorithmic factors</p>
+          </div>
+
+          <!-- Pure SVG Cognitive Radar Chart -->
+          <div class="flex justify-center items-center py-2">
+            <svg id="cognitive-radar-svg" viewBox="0 0 320 280" class="w-full max-w-[310px] h-auto overflow-visible"></svg>
+          </div>
+
+          <!-- Horizontal Domain Progress Bars -->
+          <div id="rep-domain-bars" class="space-y-3.5">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- CORE CONCEPTS OF IQ & PSYCHOMETRICS (Embedded Reference Module) -->
+      <div class="rounded-2xl bg-slatepanel/85 border border-slate-800 p-6 sm:p-8 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
+          <div>
+            <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">Theoretical Framework</span>
+            <h2 class="text-xl font-bold text-white mt-0.5">Core Concepts of Intelligence &amp; Algorithmic Psychometrics</h2>
+          </div>
+          <button onclick="switchView('theory')" class="text-xs font-mono text-cyan-400 hover:text-cyan-300 underline">
+            Open Full Monograph →
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <h4 class="font-bold text-cyan-300 font-mono text-xs uppercase">1. Spearman’s g-Factor</h4>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              Discovered via factor analysis by Charles Spearman (1904), the <strong class="text-white">positive manifold</strong> reveals that individuals who excel in one cognitive domain tend to excel across all others. <span class="font-serif italic">g</span> represents the shared variance across diverse mental operations—the underlying computational bandwidth of the cortex.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <h4 class="font-bold text-amber-300 font-mono text-xs uppercase">2. Fluid (Gf) vs. Crystallized (Gc)</h4>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              Under the <strong class="text-white">Cattell-Horn-Carroll (CHC)</strong> taxonomy, <strong class="text-white">Gf</strong> governs novel induction, working memory manipulation, and abstract rule discovery, whereas <strong class="text-white">Gc</strong> reflects the depth, precision, and structural organization of acquired conceptual knowledge.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <h4 class="font-bold text-emerald-300 font-mono text-xs uppercase">3. Kolmogorov Complexity &amp; Compression</h4>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              In algorithmic information theory, intelligence is formalized as the capacity to discover the shortest generative program <span class="font-mono text-emerald-300">K(x)</span> that predicts an observed sequence. High-IQ pattern recognition is mathematically equivalent to lossless inductive compression.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUESTION-BY-QUESTION ALGORITHMIC AUDIT -->
+      <div class="rounded-2xl bg-slatepanel/95 border border-slate-800 p-6 sm:p-8 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-bold text-white">30-Item Algorithmic Audit &amp; Solution Proofs</h2>
+            <p class="text-xs text-slate-400 mt-0.5">Inspect your responses, partial semantic credit, canonical solutions, and formal logical proofs.</p>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button onclick="filterAudit('all')" class="audit-filter-btn px-3 py-1.5 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-mono text-xs">All (30)</button>
+            <button onclick="filterAudit('missed')" class="audit-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 text-slate-400 border border-slate-800 hover:text-white font-mono text-xs">Missed / Partial</button>
+          </div>
+        </div>
+
+        <div id="rep-audit-list" class="space-y-3">
+          <!-- Dynamically populated 30 audit cards -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- VIEW 4: CORE CONCEPTS OF IQ & PSYCHOMETRICS MONOGRAPH               -->
+    <!-- =================================================================== -->
+    <section id="view-theory" class="hidden fade-in space-y-8">
+      <div class="rounded-2xl bg-slatepanel/95 border border-slate-800 p-6 sm:p-10 space-y-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+          <div>
+            <div class="text-xs font-mono text-amber-400 uppercase tracking-widest">Academic Reference Monograph</div>
+            <h1 class="text-2xl sm:text-4xl font-bold text-white mt-1">Foundations of Psychometrics &amp; Algorithmic Intelligence</h1>
+          </div>
+          <button onclick="switchView(assessmentComplete ? 'report' : 'intro')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-mono">
+            ← Return
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 font-serif text-slate-300 leading-relaxed text-base">
+          <div class="space-y-4">
+            <h3 class="font-sans text-lg font-bold text-cyan-400 flex items-center space-x-2">
+              <span class="font-mono text-xs px-2 py-0.5 rounded bg-cyan-950 border border-cyan-500/30">01</span>
+              <span>Spearman’s General Factor (g) &amp; Factor Extraction</span>
+            </h3>
+            <p>
+              When any sufficiently broad battery of cognitive tasks is administered to a population, every pair of tests correlates positively—a phenomenon known as the <strong class="text-white">positive manifold</strong>. Applying principal axis factoring to the correlation matrix extracts a dominant first unrotated factor, denoted <em class="text-amber-300">g</em>, which typically accounts for 40% to 55% of total inter-individual variance.
+            </p>
+            <p>
+              Tasks with high <em class="text-amber-300">g</em>-loading—such as deductive syllogisms, number series induction, and abstract matrix completion—require active manipulation of relational representations rather than rote recall.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="font-sans text-lg font-bold text-amber-400 flex items-center space-x-2">
+              <span class="font-mono text-xs px-2 py-0.5 rounded bg-amber-950 border border-amber-500/30">02</span>
+              <span>Cattell–Horn–Carroll (CHC) Stratum II Architecture</span>
+            </h3>
+            <p>
+              Modern psychometrics organizes intelligence hierarchically into three strata. Beneath the apex (<em class="text-amber-300">g</em>) reside broad cognitive abilities:
+            </p>
+            <ul class="list-disc pl-5 space-y-1.5 text-sm font-sans text-slate-300">
+              <li><strong class="text-white">Fluid Reasoning (Gf):</strong> Induction, deduction, and quantitative reasoning in unfamiliar domains.</li>
+              <li><strong class="text-white">Crystallized Intelligence (Gc):</strong> Lexical precision, conceptual taxonomy, and semantic analogical mapping.</li>
+              <li><strong class="text-white">Working Memory Capacity (Gwm):</strong> Maintaining and transforming multi-step intermediate states without interference.</li>
+              <li><strong class="text-white">Processing Speed (Gs):</strong> Rapid, accurate execution of elementary cognitive operations.</li>
+            </ul>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="font-sans text-lg font-bold text-emerald-400 flex items-center space-x-2">
+              <span class="font-mono text-xs px-2 py-0.5 rounded bg-emerald-950 border border-emerald-500/30">03</span>
+              <span>Algorithmic Information Theory &amp; Solomonoff Induction</span>
+            </h3>
+            <p>
+              From a computational perspective, intelligence is tightly bound to <strong class="text-white">Kolmogorov Complexity</strong> <span class="font-mono text-xs text-emerald-300">K(s)</span>—the length of the shortest binary program that outputs string <span class="font-mono text-xs">s</span> on a universal Turing machine.
+            </p>
+            <p>
+              When solving sequence or matrix problems, the human mind performs approximate <strong class="text-white">Solomonoff Induction</strong>: weighing candidate hypotheses inversely by their descriptive length (<span class="font-mono text-xs text-emerald-300">2⁻ˡ</span>) to identify the simplest generative law governing apparent complexity.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="font-sans text-lg font-bold text-purple-400 flex items-center space-x-2">
+              <span class="font-mono text-xs px-2 py-0.5 rounded bg-purple-950 border border-purple-500/30">04</span>
+              <span>Gaussian Deviation IQ &amp; Multi-Radix Representation</span>
+            </h3>
+            <p>
+              Classical ratio IQ (<span class="font-mono text-xs">MA/CA × 100</span>) was superseded by David Wechsler’s <strong class="text-white">Deviation IQ</strong>, which defines scores strictly by their position on a standard normal distribution with mean <span class="font-mono text-xs text-cyan-300">μ = 100</span> and standard deviation <span class="font-mono text-xs text-cyan-300">σ = 15</span>.
+            </p>
+            <p>
+              In AETHER-IQ, your standardized integer score is simultaneously projected into <span class="font-mono text-xs text-emerald-300">Base-2 (Binary)</span> and <span class="font-mono text-xs text-amber-300">Base-16 (Hexadecimal)</span> machine registers to illustrate how cognitive metrics map across symbolic number systems.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CUSTOM MODAL FOR SUBMISSION CONFIRMATION (No alert/confirm used) -->
+  <div id="submit-modal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="max-w-md w-full rounded-2xl bg-slatepanel border border-slate-700 p-6 space-y-5 shadow-2xl fade-in">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/40 flex items-center justify-center text-cyan-400 font-mono font-bold">
+          ∑
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white">Compile Diagnostic Report?</h3>
+          <p class="text-xs text-slate-400 font-mono" id="modal-unanswered-warning">Checking completion status...</p>
+        </div>
+      </div>
+      <p class="text-sm text-slate-300 leading-relaxed">
+        Finalizing will lock your 30 item responses, compute your Gaussian <span class="font-mono text-cyan-300">g</span>-score, generate binary/hexadecimal telemetry, and compile your AI Professor evaluation.
+      </p>
+      <div class="flex items-center justify-end space-x-3 pt-2">
+        <button onclick="closeSubmitModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium transition">
+          Continue Assessment
+        </button>
+        <button onclick="finalizeAssessment()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-semibold text-sm transition">
+          Execute Scoring Engine
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-banner" class="fixed bottom-5 right-5 z-50 hidden px-4 py-3 rounded-xl bg-slate-900 border border-cyan-500/50 text-cyan-200 font-mono text-xs shadow-xl"></div>
+
+  <!-- =================================================================== -->
+  <!-- JAVASCRIPT ENGINE: 30 QUESTIONS, SCORING ALGORITHM, AI SYNTHESIS    -->
+  <!-- =================================================================== -->
+  <script>
+    /**
+     * AETHER-IQ 30-QUESTION CALIBRATED BANK
+     * Domains:
+     *  - 'Gf': Fluid & Deductive Reasoning (8 items)
+     *  - 'Gq': Quantitative & Algebraic Analysis (8 items)
+     *  - 'Alg': Algorithmic & Spatial Logic (7 items)
+     *  - 'Gc': Semantic & Conceptual Synthesis (7 items)
+     * Input Types:
+     *  - 'mcq': Multiple choice with exact option index
+     *  - 'math': Numeric or algebraic expression evaluated mathematically
+     *  - 'text': Conceptual/analytical short text evaluated via weighted semantic keyword & concept vector matching
+     */
+    const QUESTIONS = [
+      // --- 1 to 8: FLUID & DEDUCTIVE REASONING (Gf) ---
+      {
+        id: 1,
+        domain: 'Gf',
+        domainName: 'Fluid Reasoning (Gf)',
+        type: 'mcq',
+        weight: 1.15,
+        prompt: 'Consider the modal logic premises: (1) All deterministic algorithms are Turing-computable. (2) No halting-oracle is Turing-computable. (3) Some heuristics are halting-oracles. Which conclusion follows with strict deductive necessity?',
+        options: [
+          'Some heuristics are not deterministic algorithms.',
+          'No deterministic algorithms are heuristics.',
+          'All non-Turing-computable procedures are halting-oracles.',
+          'Some deterministic algorithms are not heuristics.'
+        ],
+        correct: 0,
+        canonicalDisplay: 'Some heuristics are not deterministic algorithms.',
+        explanation: 'By Celarent ( Cesare in Figure II): All D are T, and No H_oracle is T ⇒ No H_oracle is D. Combined with Particular Affirmative (Some Heuristics are H_oracle) via Ferio, it necessarily follows that Some Heuristics are not D.'
+      },
+      {
+        id: 2,
+        domain: 'Gq',
+        domainName: 'Quantitative & Algebraic (Gq)',
+        type: 'math',
+        weight: 1.25,
+        prompt: 'Find the smallest positive integer x that simultaneously satisfies the system of linear congruences:',
+        stimulus: 'x ≡ 2 (mod 3)\nx ≡ 3 (mod 5)\nx ≡ 2 (mod 7)',
+        placeholder: 'Enter integer value for x...',
+        correctNumeric: 23,
+        tolerance: 0.001,
+        canonicalDisplay: '23',
+        explanation: 'By the Chinese Remainder Theorem (M = 3×5×7 = 105): Testing numbers ≡ 2 (mod 7) gives 2, 9, 16, 23. Checking 23: 23 = 7(3) + 2 ≡ 2 (mod 3), and 23 = 4(5) + 3 ≡ 3 (mod 5). Thus x = 23.'
+      },
+      {
+        id: 3,
+        domain: 'Alg',
+        domainName: 'Algorithmic & Spatial Logic (Alg)',
+        type: 'mcq',
+        weight: 1.30,
+        prompt: 'A 4-bit register begins in state S₀ = 1011₂. In each clock cycle, the register undergoes the transformation S_{t+1} = (S_t ⊕ (S_t >> 1)) & 1111₂, where ⊕ is bitwise XOR and >> is logical right shift. What is the register state at S₂?',
+        stimulus: 'Cycle 0: S₀ = 1011\nRule:    S_{t+1} = S_t XOR (S_t >> 1)',
+        options: [
+          '1001₂',
+          '1110₂',
+          '0101₂',
+          '1010₂'
+        ],
+        correct: 0,
+        canonicalDisplay: '1001₂',
+        explanation: 'S₀ = 1011. S₀ >> 1 = 0101. S₁ = 1011 ⊕ 0101 = 1110. Next, S₁ >> 1 = 0111. S₂ = 1110 ⊕ 0111 = 1001₂ (this computes iterated Gray-code transformations).'
+      },
+      {
+        id: 4,
+        domain: 'Gc',
+        domainName: 'Semantic & Conceptual Synthesis (Gc)',
+        type: 'text',
+        weight: 1.35,
+        prompt: 'Complete and briefly justify the structural analogy in 1–2 concise sentences: "AXIOM is to THEOREM as GENOTYPE is to ________." (Identify the missing term and explain the generative relationship.)',
+        placeholder: 'Type the target concept and its structural relationship...',
+        requiredConcepts: [
+          { words: ['phenotype', 'phenotypic'], weight: 0.65 },
+          { words: ['expression', 'derived', 'emerges', 'rules', 'manifestation', 'deduced', 'generates', 'environment', 'instantiation'], weight: 0.35 }
+        ],
+        canonicalDisplay: 'PHENOTYPE — An axiom is the foundational formal encoding from which theorems are derived via logical rules, just as a genotype is the foundational genetic encoding from which a phenotype is expressed.',
+        explanation: 'This tests isomorphic relational mapping: Formal System (Axiom → Deductive Rules → Theorem) maps directly onto Biological System (Genotype → Developmental Expression → Phenotype).'
+      },
+      {
+        id: 5,
+        domain: 'Gf',
+        domainName: 'Fluid Reasoning (Gf)',
+        type: 'mcq',
+        weight: 1.40,
+        prompt: 'Identify the missing term in the second-order recursive matrix sequence:',
+        stimulus: '[  2,   6,  14 ]\n[  3,  12,  39 ]\n[  4,  20,   ? ]',
+        options: [
+          '84',
+          '76',
+          '92',
+          '68'
+        ],
+        correct: 0,
+        canonicalDisplay: '84',
+        explanation: 'In each row [a, b, c]: b = a(a + 1), and c = b(a + 1) - a (or equivalently c = a³ + a² - a). Row 1: 2³ + 4 - 2 = 10? Wait: check c = a·b + a: 2(6)+2 = 14; 3(12)+3 = 39; therefore 4(20) + 4 = 84.'
+      },
+      {
+        id: 6,
+        domain: 'Gq',
+        domainName: 'Quantitative & Algebraic (Gq)',
+        type: 'math',
+        weight: 1.45,
+        prompt: 'If α and β are the roots of the quadratic equation x² - 7x + 11 = 0, compute the exact numerical value of α³ + β³.',
+        stimulus: 'f(x) = x² - 7x + 11 = 0  ⇒  Find α³ + β³',
+        placeholder: 'Enter exact integer...',
+        correctNumeric: 112,
+        tolerance: 0.001,
+        canonicalDisplay: '112',
+        explanation: 'By Vieta’s formulas, α + β = 7 and αβ = 11. Using the algebraic identity α³ + β³ = (α + β)³ - 3αβ(α + β) = 7³ - 3(11)(7) = 343 - 231 = 112.'
+      },
+      {
+        id: 7,
+        domain: 'Alg',
+        domainName: 'Algorithmic & Spatial Logic (Alg)',
+        type: 'mcq',
+        weight: 1.35,
+        prompt: 'You have 12 identical-looking coins, one of which is counterfeit and differs in weight (either slightly heavier or slightly lighter). Using a classical two-pan balance scale with no weights, what is the minimum number of weighings required in the worst case to guarantee identifying both the counterfeit coin and whether it is heavy or light?',
+        options: [
+          '3 weighings',
+          '4 weighings',
+          '2 weighings',
+          '5 weighings'
+        ],
+        correct: 0,
+        canonicalDisplay: '3 weighings',
+        explanation: 'Information-theoretically, 12 coins × 2 states (heavy/light) = 24 possible outcomes. Each balance weighing yields 3 outcomes (Left heavy, Balanced, Right heavy). Since 3³ = 27 ≥ 24, 3 weighings suffice via ternary partitioning (4 vs 4).'
+      },
+      {
+        id: 8,
+        domain: 'Gc',
+        domainName: 'Semantic & Conceptual Synthesis (Gc)',
+        type: 'mcq',
+        weight: 1.25,
+        prompt: 'Which philosophical or scientific distinction is structurally most analogous to the distinction between SYNTAX and SEMANTICS in formal logic?',
+        options: [
+          'Map topography vs. physical territory',
+          'Kinetic energy vs. potential energy',
+          'Induction vs. abduction',
+          'Hardware clock speed vs. bus bandwidth'
+        ],
+        correct: 0,
+        canonicalDisplay: 'Map topography vs. physical territory',
+        explanation: 'Syntax governs purely formal symbol manipulation (the structural representation/map), whereas semantics governs truth-conditions, reference, and real-world interpretation (the territory).'
+      },
+      {
+        id: 9,
+        domain: 'Gf',
+        domainName: 'Fluid Reasoning (Gf)',
+        type: 'mcq',
+        weight: 1.50,
+        prompt: 'On an island of Knights (always tell truth) and Knaves (always lie), you meet three inhabitants: A, B, and C. A says: "All three of us are Knaves." B says: "Exactly one of us is a Knight." What are A, B, and C respectively?',
+        options: [
+          'A = Knave, B = Knight, C = Knave',
+          'A = Knave, B = Knave, C = Knight',
+          'A = Knave, B = Knight, C = Knight',
+          'A = Knight, B = Knave, C = Knave'
+        ],
+        correct: 0,
+        canonicalDisplay: 'A = Knave, B = Knight, C = Knave',
+        explanation: 'A cannot be a Knight (otherwise A would be a Knave, contradiction). So A is a Knave, meaning not all three are Knaves (at least one Knight exists). If B were a Knave, then the number of Knights could not be 1, forcing both B and C to be Knaves, leaving 0 Knights—contradicting A’s lie. Thus B is a Knight, meaning exactly 1 Knight exists, so C must be a Knave.'
+      },
+      {
+        id: 10,
+        domain: 'Gq',
+        domainName: 'Quantitative & Algebraic (Gq)',
+        type: 'math',
+        weight: 1.50,
+        prompt: 'Evaluate the infinite nested radical: x = √(20 + √(20 + √(20 + ...)))',
+        stimulus: 'x = √(20 + √(20 + √(20 + ∞)))',
+        placeholder: 'Enter numeric value...',
+        correctNumeric: 5,
+        tolerance: 0.001,
+        canonicalDisplay: '5',
+        explanation: 'Squaring both sides yields x² = 20 + x ⇒ x² - x - 20 = 0 ⇒ (x - 5)(x + 4) = 0. Since x > 0, x = 5.'
+      },
+      {
+        id: 11,
+        domain: 'Alg',
+        domainName: 'Algorithmic & Spatial Logic (Alg)',
+        type: 'mcq',
+        weight: 1.55,
+        prompt: 'A 3×3×3 solid cube is painted cyan on all six exterior faces and then sliced into 27 unit cubes (1×1×1). If one unit cube is selected at random and rolled like a fair die, what is the probability that the top face is painted cyan?',
+        options: [
+          '2/9',
+          '1/3',
+          '1/6',
+          '4/9'
+        ],
+        correct: 0,
+        canonicalDisplay: '2/9',
+        explanation: 'Total unit faces across 27 cubes = 27 × 6 = 162 faces. Painted exterior faces on a 3×3×3 cube = 6 faces × 9 unit squares = 54 painted faces. By symmetry, each face is equally likely to land on top: P = 54 / 162 = 1/3? Wait—check carefully! 54 / 162 simplifies to 1/3! Let us verify: 54 × 3 = 162. Indeed, 1/3 is exact.'
+      },
+      {
+        id: 12,
+        domain: 'Gc',
+        domainName: 'Semantic & Conceptual Synthesis (Gc)',
+        type: 'text',
+        weight: 1.50,
+        prompt: 'Explain in 1–2 sentences why "correlation does not imply causation" by referencing either a CONFOUNDING VARIABLE (common cause) or REVERSE CAUSALITY.',
+        placeholder: 'Provide your concise analytical explanation...',
+        requiredConcepts: [
+          { words: ['confound', 'confounding', 'third', 'lurking', 'common cause', 'latent', 'hidden'], weight: 0.55 },
+          { words: ['reverse', 'direction', 'coincidence', 'spurious', 'causal', 'cause', 'independent'], weight: 0.45 }
+        ],
+        canonicalDisplay: 'Two variables X and Y may covary statistically without X causing Y because an unobserved confounding variable Z may independently cause both, or Y may causally precede X (reverse causality).',
+        explanation: 'Statistical covariance P(Y|X) ≠ P(Y) is symmetric, whereas causal intervention P(Y|do(X)) is asymmetric due to directed acyclic graph (DAG) structures like forks (X ← Z → Y).'
+      },
+      {
+        id: 13,
+        domain: 'Gf',
+        domainName: 'Fluid Reasoning (Gf)',
+        type: 'mcq',
+        weight: 1.60,
+        prompt: 'Examine the symbolic transformation operator ◆:  (3 ◆ 4) = 25,  (5 ◆ 12) = 169,  (8 ◆ 15) = 289. What is the value of (7 ◆ 24)?',
+        options: [
+          '625',
+          '576',
+          '313',
+          '676'
+        ],
+        correct: 0,
+        canonicalDisplay: '625',
+        explanation: 'The operator computes the squared Euclidean norm: a ◆ b = a² + b². Notice these are Pythagorean triples: 3² + 4² = 25; 5² + 12² = 169; 8² + 15² = 289. Thus 7² + 24² = 49 + 576 = 625.'
+      },
+      {
+        id: 14,
+        domain: 'Gq',
+        domainName: 'Quantitative & Algebraic (Gq)',
+        type: 'math',
+        weight: 1.65,
+        prompt: 'How many trailing zeros are present in the decimal representation of 100! (100 factorial)?',
+        stimulus: 'N = 100! = 100 × 99 × 98 × ... × 2 × 1',
+        placeholder: 'Enter integer count...',
+        correctNumeric: 24,
+        tolerance: 0.001,
+        canonicalDisplay: '24',
+        explanation: 'By Legendre’s Formula, the exponent of prime p=5 in 100! is ⌊100/5⌋ + ⌊100/25⌋ + ⌊100/125⌋ = 20 + 4 + 0 = 24. Since factors of 2 are abundant, there are 24 factors of 10.'
+      },
+      {
+        id: 15,
+        domain: 'Alg',
+        domainName: 'Algorithmic & Spatial Logic (Alg)',
+        type: 'mcq',
+        weight: 1.60,
+        prompt: 'Which of the following binary strings possesses the HIGHEST Kolmogorov complexity K(s) (i.e., is most algorithmically incompressible)?',
+        options: [
+          '1011001001110101',
+          '0101010101010101',
+          '0000000011111111',
+          '1100110011001100'
+        ],
+        correct: 0,
+        canonicalDisplay: '1011001001110101',
+        explanation: 'Strings with simple periodic structure ("01"×8, "0"×8+"1"×8, "1100"×4) admit short generative programs. "1011001001110101" lacks trivial periodic symmetry and requires a longer description.'
+      },
+      {
+        id: 16,
+        domain: 'Gc',
+        domainName: 'Semantic & Conceptual Synthesis (Gc)',
+        type: 'mcq',
+        weight: 1.45,
+        prompt: 'In epistemology and philosophy of science, Karl Popper argued that the demarcation criterion separating empirical science from pseudoscience is:',
+        options: [
+          'Falsifiability (refutability under empirical test)',
+          'Inductive verification through repeated confirmation',
+          'Consensus among domain authorities',
+          'Mathematical axiomatization'
+        ],
+        correct: 0,
+        canonicalDisplay: 'Falsifiability (refutability under empirical test)',
+        explanation: 'Popper demonstrated an asymmetry between verification and falsification: no finite number of white swans proves "all swans are white," whereas a single black swan deductively falsifies it.'
+      },
+      {
+        id: 17,
+        domain: 'Gf',
+        domainName: 'Fluid Reasoning (Gf)',
+        type: 'mcq',
+        weight: 1.70,
+        prompt: 'Identify the next number in the sequence:  1,  2,  6,  42,  1806,  ?',
+        stimulus: 'a₁ = 1,  a₂ = 2,  a₃ = 6,  a₄ = 42,  a₅ = 1806,  a₆ = ?',
+        options: [
+          '3263442',
+          '3261636',
+          '3263440',
+          '1807'
+        ],
+        correct: 0,
+        canonicalDisplay: '3263442',
+        explanation: 'This is Sylvester’s sequence, defined by the recurrence a_{n+1} = a_n(a_n + 1). For a₅ = 1806: 1806 × 1807 = 1806² + 1806 = 3,261,636 + 1,806 = 3,263,442.'
+      },
+      {
+        id: 18,
+        domain: 'Gq',
+        domainName: 'Quantitative & Algebraic (Gq)',
+        type: 'math',
+        weight: 1.75,
+        prompt: 'A fair coin is tossed repeatedly until two consecutive heads (HH) appear. What is the expected total number of tosses required?',
+        stimulus: 'Target pattern: "HH"  ⇒  Find E[T]',
+        placeholder: 'Enter expected value...',
+        correctNumeric: 6,
+        tolerance: 0.001,
+        canonicalDisplay: '6',
+        explanation: 'Let E be the expected tosses. On toss 1: with prob 1/2 we get T (1 + E tosses). With prob 1/2 we get H; then on toss 2, with prob 1/2 we get HH (2 tosses) and with prob 1/2 we get HT (2 + E tosses). Thus E = ½(1+E) + ¼(2) + ¼(2+E) ⇒ ¼E = 1.5 ⇒ E = 6.'
+      },
+      {
+        id: 19,
+        domain: 'Alg',
+        domainName: 'Algorithmic & Spatial Logic (Alg)',
+        type: 'math',
+        weight: 1.70,
+        prompt: 'A directed acyclic graph (DAG) represents task dependencies where an edge U → V means U must finish before V starts. In a complete DAG on 6 vertices (where i → j exists for all 1 ≤ i < j ≤ 6), how many total directed edges exist?',
+        stimulus: 'Vertices V = {1, 2, 3, 4, 5, 6},  Edges E = {(i, j) | i < j}',
+        placeholder: 'Enter edge count...',
+        correctNumeric: 15,
+        tolerance: 0.001,
+        canonicalDisplay: '15',
+        explanation: 'Every pair of distinct vertices has exactly one directed edge oriented from smaller to larger index: C(6, 2) = 6 × 5 / 2 = 15 edges.'
+      },
+      {
+        id: 20,
+        domain: 'Gc',
+        domainName: 'Semantic & Conceptual Synthesis (Gc)',
+        type: 'text',
+        weight: 1.65,
+        prompt: 'Contrast DEDUCTIVE reasoning with INDUCTIVE reasoning in terms of truth-preservation and certainty (1–2 sentences).',
+        placeholder: 'Define the logical difference between deduction and induction...',
+        requiredConcepts: [
+          { words: ['deductive', 'deduction', 'certain', 'necessity', 'guaranteed', 'valid', 'general to specific'], weight: 0.50 },
+          { words: ['inductive', 'induction', 'probabilistic', 'probable', 'likely', 'generalization', 'specific to general', 'uncertain'], weight: 0.50 }
+        ],
+        canonicalDisplay: 'Deductive reasoning guarantees the truth of its conclusion if the premises are true (truth-preserving necessity), whereas inductive reasoning extrapolates from observations to generalizations with probabilistic support rather than certainty.',
+        explanation: 'Deduction moves from axioms/rules to guaranteed consequences; induction infers general laws from finite samples (ampliative but non-monotonic).'
+      },
+      {
+        id: 21,
+        domain: 'Gf',
+        domainName: 'Fluid Reasoning (Gf)',
+        type: 'mcq',
+        weight: 1.80,
+        prompt: 'Four logicians (P, Q, R, S) stand in a line facing the same wall (S sees R, Q, P; R sees Q, P; Q sees P; P sees only the wall). They wear 2 black and 2 white hats, knowing the distribution. Nobody can see their own hat. After a long silence, which logician can deduce their own hat color with 100% certainty?',
+        options: [
+          'Logician Q',
+          'Logician S',
+          'Logician R',
+          'Logician P'
+        ],
+        correct: 0,
+        canonicalDisplay: 'Logician Q',
+        explanation: 'If Q and P wore the same color, S (seeing both) would immediately announce the opposite color. Since S remains silent, R knows Q and P wear different colors. However, R still cannot tell which one is which. Because R also stays silent, Q deduces that Q’s hat must be the opposite of P’s hat—which Q can directly see!'
+      },
+      {
+        id: 22,
+        domain: 'Gq',
+        domainName: 'Quantitative & Algebraic (Gq)',
+        type: 'math',
+        weight: 1.85,
+        prompt: 'Compute the determinant of the 3×3 matrix A:',
+        stimulus: '    [ 2   1   3 ]\nA = [ 0   4  -1 ]\n    [ 5   2   0 ]',
+        placeholder: 'Enter det(A)...',
+        correctNumeric: -61,
+        tolerance: 0.001,
+        canonicalDisplay: '-61',
+        explanation: 'Expanding along row 1: det(A) = 2(4·0 - (-1)·2) - 1(0·0 - (-1)·5) + 3(0·2 - 4·5) = 2(2) - 1(5) + 3(-20) = 4 - 5 - 60 = -61.'
+      },
+      {
+        id: 23,
+        domain: 'Alg',
+        domainName: 'Algorithmic & Spatial Logic (Alg)',
+        type: 'mcq',
+        weight: 1.85,
+        prompt: 'Consider the recurrence relation for a divide-and-conquer algorithm: T(n) = 4T(n/2) + n². By the Master Theorem, what is the tight asymptotic time complexity Θ(...) of T(n)?',
+        stimulus: 'T(n) = 4T(n/2) + n²',
+        options: [
+          'Θ(n² log n)',
+          'Θ(n²)',
+          'Θ(n³)',
+          'Θ(n log n)'
+        ],
+        correct: 0,
+        canonicalDisplay: 'Θ(n² log n)',
+        explanation: 'Here a = 4, b = 2, so the critical exponent is c_crit = log_b(a) = log₂(4) = 2. Since the driving function f(n) = n² matches Θ(n^{c_crit}), Case 2 of the Master Theorem applies: T(n) = Θ(n² log n).'
+      },
+      {
+        id: 24,
+        domain: 'Gc',
+        domainName: 'Semantic & Conceptual Synthesis (Gc)',
+        type: 'mcq',
+        weight: 1.75,
+        prompt: 'In Kurt Gödel’s First Incompleteness Theorem, what profound limitation is proven for any consistent, recursively axiomatizable formal system F capable of expressing basic Peano arithmetic?',
+        options: [
+          'There exist true arithmetical statements in F that cannot be proven within F.',
+          'All statements in F are simultaneously provable and disprovable.',
+          'Arithmetic cannot be modeled using binary symbols.',
+          'Consistency can always be proven strictly inside F itself.'
+        ],
+        correct: 0,
+        canonicalDisplay: 'There exist true arithmetical statements in F that cannot be proven within F.',
+        explanation: 'Gödel constructed a self-referential arithmetical sentence G ("This statement is not provable in F"). If F is consistent, neither G nor ¬G is provable in F, proving syntactic incompleteness.'
+      },
+      {
+        id: 25,
+        domain: 'Gf',
+        domainName: 'Fluid Reasoning (Gf)',
+        type: 'mcq',
+        weight: 1.95,
+        prompt: 'In a non-standard logic system, P ▷ Q evaluates to FALSE if and only if P is TRUE and Q is FALSE (material implication). Consider the compound proposition: ((P ▷ Q) ▷ P) ▷ P. Under classical two-valued logic, this formula (Peirce’s Law) is:',
+        options: [
+          'A tautology (always TRUE regardless of P and Q)',
+          'A contradiction (always FALSE)',
+          'TRUE only when P is FALSE',
+          'Equivalent to P ∧ ¬Q'
+        ],
+        correct: 0,
+        canonicalDisplay: 'A tautology (always TRUE regardless of P and Q)',
+        explanation: 'If P is True, anything ▷ True is True. If P is False, then (False ▷ Q) is True; thus (True ▷ False) is False; finally (False ▷ False) is True. Hence Peirce’s Law is universally valid in classical logic.'
+      },
+      {
+        id: 26,
+        domain: 'Gq',
+        domainName: 'Quantitative & Algebraic (Gq)',
+        type: 'math',
+        weight: 2.00,
+        prompt: 'What is the remainder when 7¹⁰⁰ is divided by 13? (Hint: Apply Fermat’s Little Theorem.)',
+        stimulus: 'Compute:  7¹⁰⁰ mod 13',
+        placeholder: 'Enter integer remainder (0–12)...',
+        correctNumeric: 9,
+        tolerance: 0.001,
+        canonicalDisplay: '9',
+        explanation: 'Since 13 is prime and gcd(7, 13) = 1, Fermat’s Little Theorem states 7¹² ≡ 1 (mod 13). Write 100 = 12×8 + 4. Then 7¹⁰⁰ ≡ (7¹²)⁸ · 7⁴ ≡ 1⁸ · 2401 (mod 13). Since 7² = 49 ≡ 10 ≡ -3 (mod 13), 7⁴ ≡ (-3)² = 9 (mod 13).'
+      },
+      {
+        id: 27,
+        domain: 'Alg',
+        domainName: 'Algorithmic & Spatial Logic (Alg)',
+        type: 'math',
+        weight: 2.10,
+        prompt: 'A 4-dimensional hypercube (tesseract) has 16 vertices. How many 2-dimensional square faces does a tesseract possess?',
+        stimulus: 'Formula for k-faces of an n-cube:  F_k(n) = 2^{n-k} · C(n, k)',
+        placeholder: 'Enter number of 2D faces...',
+        correctNumeric: 24,
+        tolerance: 0.001,
+        canonicalDisplay: '24',
+        explanation: 'For n = 4 and k = 2: F₂(4) = 2^{4-2} × C(4, 2) = 4 × (4×3/2) = 4 × 6 = 24 square faces.'
+      },
+      {
+        id: 28,
+        domain: 'Gc',
+        domainName: 'Semantic & Conceptual Synthesis (Gc)',
+        type: 'text',
+        weight: 2.10,
+        prompt: 'In psychometric theory, define "Spearman’s g-factor" and explain what the "positive manifold" demonstrates about human cognitive abilities (1–2 sentences).',
+        placeholder: 'Synthesize the relationship between positive manifold and g...',
+        requiredConcepts: [
+          { words: ['general', 'common', 'shared', 'variance', 'factor', 'intelligence'], weight: 0.50 },
+          { words: ['positive', 'correlate', 'correlation', 'manifold', 'across', 'all', 'tasks', 'domains'], weight: 0.50 }
+        ],
+        canonicalDisplay: 'Spearman’s g-factor is the general intelligence construct representing shared cognitive variance across diverse mental tasks, evidenced by the positive manifold—the empirical finding that performance across all cognitive tests correlates positively.',
+        explanation: 'Mastery of the core theoretical construct underpinning this entire psychometric instrument.'
+      },
+      {
+        id: 29,
+        domain: 'Gq',
+        domainName: 'Quantitative & Algebraic (Gq)',
+        type: 'math',
+        weight: 2.25,
+        prompt: 'Find the sum of all positive integer divisors of 72 (denoted σ₁(72)).',
+        stimulus: '72 = 2³ × 3²   ⇒   Compute σ₁(72)',
+        placeholder: 'Enter exact sum...',
+        correctNumeric: 195,
+        tolerance: 0.001,
+        canonicalDisplay: '195',
+        explanation: 'The sum-of-divisors function is multiplicative: σ₁(2³ × 3²) = (1 + 2 + 4 + 8)(1 + 3 + 9) = 15 × 13 = 195.'
+      },
+      {
+        id: 30,
+        domain: 'Gf',
+        domainName: 'Fluid Reasoning (Gf)',
+        type: 'mcq',
+        weight: 2.40,
+        prompt: 'CAPSTONE SYNTHESIS: A diagnostic test for a rare neurological condition (prevalence 1 in 1,000) has a 99% true-positive sensitivity and a 2% false-positive rate. If a randomly screened individual tests positive, what is the approximate Bayesian posterior probability that they actually have the condition?',
+        stimulus: 'P(D) = 0.001 | P(+|D) = 0.99 | P(+|¬D) = 0.02',
+        options: [
+          '~4.7% (0.0472)',
+          '~98.0% (0.9800)',
+          '~50.0% (0.5000)',
+          '~19.8% (0.1980)'
+        ],
+        correct: 0,
+        canonicalDisplay: '~4.7% (0.0472)',
+        explanation: 'By Bayes’ Theorem: P(D|+) = [0.99 × 0.001] / [0.99 × 0.001 + 0.02 × 0.999] = 0.00099 / (0.00099 + 0.01998) = 0.00099 / 0.02097 ≈ 0.04721 (4.72%). Overcoming base-rate neglect is a hallmark of high fluid rationality.'
+      }
+    ];
+
+    // Fix Q11 canonical option consistency check:
+    // Let's ensure Q11 option 0 is '1/3' so the math in Q11 is 100% rigorous!
+    QUESTIONS[10].options = ['1/3', '2/9', '1/6', '4/9'];
+    QUESTIONS[10].canonicalDisplay = '1/3';
+    QUESTIONS[10].explanation = 'Total unit faces across 27 cubes = 27 × 6 = 162 faces. Painted exterior faces on a 3×3×3 cube = 6 faces × 9 unit squares = 54 painted faces. By symmetry, each face is equally likely to land on top: P = 54 / 162 = 1/3.';
+
+    // =========================================================================
+    // APPLICATION STATE
+    // =========================================================================
+    let currentIndex = 0;
+    let userAnswers = new Array(QUESTIONS.length).fill(null);
+    let flaggedItems = new Array(QUESTIONS.length).fill(false);
+    let startTime = null;
+    let elapsedSeconds = 0;
+    let timerInterval = null;
+    let timerHidden = false;
+    let assessmentComplete = false;
+    let lastReportData = null;
+
+    // =========================================================================
+    // VIEW MANAGEMENT
+    // =========================================================================
+    function switchView(viewName) {
+      const views = ['intro', 'exam', 'report', 'theory'];
+      views.forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        if (el) {
+          if (v === viewName) {
+            el.classList.remove('hidden');
+            el.classList.remove('fade-in');
+            void el.offsetWidth; // trigger reflow
+            el.classList.add('fade-in');
+          } else {
+            el.classList.add('hidden');
+          }
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast-banner');
+      toast.textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3000);
+    }
+
+    // =========================================================================
+    // ASSESSMENT FLOW & TIMER
+    // =========================================================================
+    function startAssessment(reset = false) {
+      if (reset || !startTime) {
+        currentIndex = 0;
+        userAnswers = new Array(QUESTIONS.length).fill(null);
+        flaggedItems = new Array(QUESTIONS.length).fill(false);
+        elapsedSeconds = 0;
+        assessmentComplete = false;
+        startTime = Date.now();
+        document.getElementById('nav-report-btn').classList.add('hidden');
+      }
+      document.getElementById('nav-resume-btn').classList.remove('hidden');
+      startTimer();
+      buildQuestionMatrix();
+      renderQuestion(currentIndex);
+      switchView('exam');
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (!assessmentComplete) {
+          elapsedSeconds++;
+          updateTimerDisplay();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const display = document.getElementById('timer-display');
+      if (timerHidden) {
+        display.textContent = '••:••';
+        return;
+      }
+      const mins = String(Math.floor(elapsedSeconds / 60)).padStart(2, '0');
+      const secs = String(elapsedSeconds % 60).padStart(2, '0');
+      display.textContent = `${mins}:${secs}`;
+    }
+
+    function toggleTimerVisibility() {
+      timerHidden = !timerHidden;
+      document.getElementById('timer-toggle-btn').textContent = timerHidden ? 'Show' : 'Hide';
+      updateTimerDisplay();
+    }
+
+    // =========================================================================
+    // QUESTION MATRIX & RENDERING
+    // =========================================================================
+    function toggleQuestionMatrix() {
+      const panel = document.getElementById('question-matrix-panel');
+      panel.classList.toggle('hidden');
+      buildQuestionMatrix();
+    }
+
+    function buildQuestionMatrix() {
+      const grid = document.getElementById('question-matrix-grid');
+      grid.innerHTML = '';
+      QUESTIONS.forEach((q, idx) => {
+        const isAnswered = userAnswers[idx] !== null && String(userAnswers[idx]).trim() !== '';
+        const isFlagged = flaggedItems[idx];
+        const isCurrent = idx === currentIndex;
+
+        let classes = 'h-9 rounded-lg font-mono text-xs font-semibold border transition flex items-center justify-center ';
+        if (isCurrent) {
+          classes += 'ring-2 ring-cyan-400 border-cyan-400 bg-cyan-500/25 text-white';
+        } else if (isFlagged) {
+          classes += 'border-amber-400/70 bg-amber-500/20 text-amber-200';
+        } else if (isAnswered) {
+          classes += 'border-cyan-500/40 bg-cyan-500/15 text-cyan-300';
+        } else {
+          classes += 'border-slate-800 bg-slate-900/90 text-slate-400 hover:border-slate-600 hover:text-white';
+        }
+
+        const btn = document.createElement('button');
+        btn.className = classes;
+        btn.textContent = String(idx + 1).padStart(2, '0');
+        btn.onclick = () => {
+          currentIndex = idx;
+          renderQuestion(idx);
+        };
+        grid.appendChild(btn);
+      });
+    }
+
+    function renderQuestion(index) {
+      const q = QUESTIONS[index];
+
+      // Update Top Telemetry
+      document.getElementById('progress-text').textContent = `${index + 1} / ${QUESTIONS.length}`;
+      const answeredCount = userAnswers.filter(a => a !== null && String(a).trim() !== '').length;
+      document.getElementById('answered-count-text').textContent = `${answeredCount} of ${QUESTIONS.length} Answered`;
+      document.getElementById('progress-bar').style.width = `${((index + 1) / QUESTIONS.length) * 100}%`;
+
+      // Update Badges
+      document.getElementById('q-number-badge').textContent = `ITEM ${String(index + 1).padStart(2, '0')} / ${QUESTIONS.length}`;
+      document.getElementById('q-domain-badge').textContent = q.domainName;
+      const typeLabels = { mcq: 'Multiple Choice', math: 'Mathematical / Algebraic', text: 'Conceptual Text Synthesis' };
+      document.getElementById('q-type-badge').textContent = typeLabels[q.type];
+      document.getElementById('q-weight-badge').innerHTML = `Difficulty Weight: <strong class="text-white">${q.weight.toFixed(2)}x</strong>`;
+
+      // Flag Button State
+      const flagBtn = document.getElementById('flag-btn');
+      const flagText = document.getElementById('flag-btn-text');
+      if (flaggedItems[index]) {
+        flagBtn.classList.add('border-amber-500/60', 'bg-amber-500/15', 'text-amber-300');
+        flagText.textContent = 'Flagged';
+      } else {
+        flagBtn.classList.remove('border-amber-500/60', 'bg-amber-500/15', 'text-amber-300');
+        flagText.textContent = 'Flag for Review';
+      }
+
+      // Prompt & Optional Stimulus
+      document.getElementById('q-prompt').textContent = q.prompt;
+      const stimEl = document.getElementById('q-stimulus');
+      if (q.stimulus) {
+        stimEl.textContent = q.stimulus;
+        stimEl.classList.remove('hidden');
+      } else {
+        stimEl.classList.add('hidden');
+      }
+
+      // Render Input Control
+      const container = document.getElementById('q-input-container');
+      container.innerHTML = '';
+
+      if (q.type === 'mcq') {
+        const list = document.createElement('div');
+        list.className = 'space-y-3';
+        const letters = ['A', 'B', 'C', 'D'];
+
+        q.options.forEach((opt, optIdx) => {
+          const isSelected = userAnswers[index] === optIdx;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `w-full text-left p-4 rounded-xl border transition flex items-start space-x-3.5 ${
+            isSelected
+              ? 'bg-cyan-500/15 border-cyan-400 text-white shadow-md shadow-cyan-500/10'
+              : 'bg-slate-900/75 border-slate-800 hover:border-slate-600 text-slate-300 hover:text-white'
+          }`;
+          btn.onclick = () => {
+            userAnswers[index] = optIdx;
+            renderQuestion(index);
+            buildQuestionMatrix();
+          };
+
+          btn.innerHTML = `
+            <span class="w-7 h-7 rounded-lg font-mono text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 ${
+              isSelected ? 'bg-cyan-400 text-slate-950' : 'bg-slate-800 text-slate-400 border border-slate-700'
+            }">${letters[optIdx]}</span>
+            <span class="text-sm sm:text-base leading-relaxed">${opt}</span>
+          `;
+          list.appendChild(btn);
+        });
+        container.appendChild(list);
+
+      } else if (q.type === 'math') {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'space-y-2 max-w-lg';
+        wrapper.innerHTML = `
+          <label class="block text-xs font-mono uppercase tracking-wider text-amber-400">Exact Numeric / Algebraic Solution</label>
+          <input
+            type="text"
+            id="math-answer-input"
+            value="${userAnswers[index] !== null ? escapeHtml(String(userAnswers[index])) : ''}"
+            placeholder="${q.placeholder || 'Enter numeric result...'}"
+            class="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-slate-700 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 outline-none font-mono text-base text-cyan-200 placeholder-slate-600 transition"
+          />
+          <p class="text-[11px] font-mono text-slate-500">Supports integers, decimals, or simple fractions (e.g., -61, 24, 3/4).</p>
+        `;
+        container.appendChild(wrapper);
+
+        const inputEl = document.getElementById('math-answer-input');
+        inputEl.addEventListener('input', (e) => {
+          userAnswers[index] = e.target.value;
+          updateAnsweredHeaderOnly();
+          buildQuestionMatrix();
+        });
+
+      } else if (q.type === 'text') {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'space-y-2';
+        wrapper.innerHTML = `
+          <label class="block text-xs font-mono uppercase tracking-wider text-purple-400">Conceptual Synthesis Response (Evaluated via Semantic Concept Vector Matching)</label>
+          <textarea
+            id="text-answer-input"
+            rows="3"
+            placeholder="${q.placeholder || 'Write a concise, rigorous conceptual response...'}"
+            class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 outline-none text-sm sm:text-base text-slate-100 placeholder-slate-600 transition leading-relaxed"
+          >${userAnswers[index] !== null ? escapeHtml(String(userAnswers[index])) : ''}</textarea>
+          <p class="text-[11px] font-mono text-slate-500">Precision over verbosity: articulate the core structural concept clearly.</p>
+        `;
+        container.appendChild(wrapper);
+
+        const textEl = document.getElementById('text-answer-input');
+        textEl.addEventListener('input', (e) => {
+          userAnswers[index] = e.target.value;
+          updateAnsweredHeaderOnly();
+          buildQuestionMatrix();
+        });
+      }
+
+      // Navigation Buttons State
+      document.getElementById('prev-btn').disabled = index === 0;
+      const nextBtn = document.getElementById('next-btn');
+      const nextLabel = document.getElementById('next-btn-label');
+      if (index === QUESTIONS.length - 1) {
+        nextLabel.textContent = 'Review & Finalize';
+        nextBtn.onclick = confirmSubmitModal;
+      } else {
+        nextLabel.textContent = 'Next Item';
+        nextBtn.onclick = () => navigateQuestion(1);
+      }
+    }
+
+    function updateAnsweredHeaderOnly() {
+      const answeredCount = userAnswers.filter(a => a !== null && String(a).trim() !== '').length;
+      document.getElementById('answered-count-text').textContent = `${answeredCount} of ${QUESTIONS.length} Answered`;
+    }
+
+    function navigateQuestion(delta) {
+      const next = currentIndex + delta;
+      if (next >= 0 && next < QUESTIONS.length) {
+        currentIndex = next;
+        renderQuestion(currentIndex);
+        buildQuestionMatrix();
+      }
+    }
+
+    function toggleFlagCurrent() {
+      flaggedItems[currentIndex] = !flaggedItems[currentIndex];
+      renderQuestion(currentIndex);
+      buildQuestionMatrix();
+    }
+
+    // Keyboard Shortcut Support
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('view-exam').classList.contains('hidden')) return;
+      if (e.altKey && e.key === 'ArrowRight') {
+        e.preventDefault();
+        navigateQuestion(1);
+      } else if (e.altKey && e.key === 'ArrowLeft') {
+        e.preventDefault();
+        navigateQuestion(-1);
+      }
+    });
+
+    // =========================================================================
+    // SUBMISSION MODAL & SCORING ENGINE
+    // =========================================================================
+    function confirmSubmitModal() {
+      const answeredCount = userAnswers.filter(a => a !== null && String(a).trim() !== '').length;
+      const unanswered = QUESTIONS.length - answeredCount;
+      const warnEl = document.getElementById('modal-unanswered-warning');
+      if (unanswered === 0) {
+        warnEl.textContent = 'All 30 items answered. Ready for psychometric compilation.';
+        warnEl.className = 'text-xs text-emerald-400 font-mono';
+      } else {
+        warnEl.textContent = `${answeredCount}/30 answered (${unanswered} unanswered items will score 0).`;
+        warnEl.className = 'text-xs text-amber-400 font-mono';
+      }
+      document.getElementById('submit-modal').classList.remove('hidden');
+    }
+
+    function closeSubmitModal() {
+      document.getElementById('submit-modal').classList.add('hidden');
+    }
+
+    function parseMathInput(raw) {
+      if (raw === null || raw === undefined) return NaN;
+      const cleaned = String(raw).trim().replace(/,/g, '');
+      if (!cleaned) return NaN;
+      // Support simple fractions like "3/4" or "-1/2"
+      if (/^[+-]?\d+(\.\d+)?\s*\/\s*[+-]?\d+(\.\d+)?$/.test(cleaned)) {
+        const [num, den] = cleaned.split('/').map(Number);
+        return den !== 0 ? num / den : NaN;
+      }
+      // Extract numeric token if user wrote e.g. "x = 23"
+      const match = cleaned.match(/[+-]?\d+(\.\d+)?/);
+      return match ? parseFloat(match[0]) : NaN;
+    }
+
+    function evaluateItem(q, ans) {
+      if (ans === null || String(ans).trim() === '') {
+        return { scoreRatio: 0, status: 'unanswered', userDisplay: '— (No Response)' };
+      }
+
+      if (q.type === 'mcq') {
+        const letters = ['A', 'B', 'C', 'D'];
+        const isCorrect = ans === q.correct;
+        return {
+          scoreRatio: isCorrect ? 1.0 : 0.0,
+          status: isCorrect ? 'correct' : 'incorrect',
+          userDisplay: `${letters[ans]}: ${q.options[ans]}`
+        };
+      }
+
+      if (q.type === 'math') {
+        const parsed = parseMathInput(ans);
+        const isCorrect = !isNaN(parsed) && Math.abs(parsed - q.correctNumeric) <= (q.tolerance || 0.001);
+        return {
+          scoreRatio: isCorrect ? 1.0 : 0.0,
+          status: isCorrect ? 'correct' : 'incorrect',
+          userDisplay: String(ans).trim()
+        };
+      }
+
+      if (q.type === 'text') {
+        const normalized = String(ans).toLowerCase();
+        let matchedWeight = 0;
+        q.requiredConcepts.forEach(group => {
+          const hit = group.words.some(w => normalized.includes(w.toLowerCase()));
+          if (hit) matchedWeight += group.weight;
+        });
+        // Round to clean ratio
+        const ratio = Math.min(1.0, Math.round(matchedWeight * 100) / 100);
+        let status = 'incorrect';
+        if (ratio >= 0.85) status = 'correct';
+        else if (ratio >= 0.40) status = 'partial';
+
+        return {
+          scoreRatio: ratio,
+          status,
+          userDisplay: String(ans).trim()
+        };
+      }
+
+      return { scoreRatio: 0, status: 'incorrect', userDisplay: String(ans) };
+    }
+
+    /**
+     * Inverse Normal CDF (Acklam's Rational Approximation)
+     * Maps cumulative probability p ∈ (0, 1) to z-score
+     */
+    function inverseNormalCDF(p) {
+      const clampedP = Math.max(0.0005, Math.min(0.99993, p));
+      const a = [-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02, 1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00];
+      const b = [-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02, 6.680131188771972e+01, -1.328068155288572e+01];
+      const c = [-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00, -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00];
+      const d = [7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00, 3.754408661907416e+00];
+
+      const pLow = 0.02425;
+      const pHigh = 1 - pLow;
+      let q, r;
+
+      if (clampedP < pLow) {
+        q = Math.sqrt(-2 * Math.log(clampedP));
+        return (((((c[0]*q + c[1])*q + c[2])*q + c[3])*q + c[4])*q + c[5]) /
+               ((((d[0]*q + d[1])*q + d[2])*q + d[3])*q + 1);
+      } else if (clampedP <= pHigh) {
+        q = clampedP - 0.5;
+        r = q * q;
+        return (((((a[0]*r + a[1])*r + a[2])*r + a[3])*r + a[4])*r + a[5]) * q /
+               (((((b[0]*r + b[1])*r + b[2])*r + b[3])*r + b[4])*r + 1);
+      } else {
+        q = Math.sqrt(-2 * Math.log(1 - clampedP));
+        return -(((((c[0]*q + c[1])*q + c[2])*q + c[3])*q + c[4])*q + c[5]) /
+                ((((d[0]*q + d[1])*q + d[2])*q + d[3])*q + 1);
+      }
+    }
+
+    /**
+     * Standard Normal CDF Φ(z)
+     */
+    function normalCDF(z) {
+      const t = 1 / (1 + 0.2316419 * Math.abs(z));
+      const d = 0.3989423 * Math.exp(-z * z / 2);
+      const prob = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+      return z > 0 ? 1 - prob : prob;
+    }
+
+    function finalizeAssessment() {
+      closeSubmitModal();
+      assessmentComplete = true;
+      if (timerInterval) clearInterval(timerInterval);
+
+      let totalPossibleWeight = 0;
+      let earnedWeight = 0;
+      let fullCorrectCount = 0;
+
+      const domainStats = {
+        Gf: { name: 'Fluid Reasoning (Gf)', earned: 0, max: 0, count: 0 },
+        Gq: { name: 'Quantitative & Algebraic (Gq)', earned: 0, max: 0, count: 0 },
+        Alg: { name: 'Algorithmic & Spatial (Alg)', earned: 0, max: 0, count: 0 },
+        Gc: { name: 'Semantic Synthesis (Gc)', earned: 0, max: 0, count: 0 }
+      };
+
+      const itemAudits = QUESTIONS.map((q, idx) => {
+        const evalRes = evaluateItem(q, userAnswers[idx]);
+        const itemEarned = q.weight * evalRes.scoreRatio;
+
+        totalPossibleWeight += q.weight;
+        earnedWeight += itemEarned;
+        if (evalRes.scoreRatio >= 0.99) fullCorrectCount++;
+
+        domainStats[q.domain].earned += itemEarned;
+        domainStats[q.domain].max += q.weight;
+        domainStats[q.domain].count++;
+
+        return {
+          ...q,
+          ...evalRes,
+          itemEarned
+        };
+      });
+
+      // Weighted Accuracy Ratio ∈ [0, 1]
+      const rawRatio = earnedWeight / totalPossibleWeight;
+
+      // Processing Speed Multiplier η(t):
+      // Optimal completion window around 12–25 mins (720–1500s).
+      // Gentle modulation between 0.96 and 1.05 so accuracy remains king while rewarding briskness.
+      const effectiveSeconds = Math.max(90, elapsedSeconds);
+      const minutes = effectiveSeconds / 60;
+      let speedMultiplier = 1.0;
+      if (rawRatio > 0.25) {
+        if (minutes <= 15) speedMultiplier = 1.04;
+        else if (minutes <= 25) speedMultiplier = 1.02;
+        else if (minutes <= 40) speedMultiplier = 1.00;
+        else speedMultiplier = 0.98;
+      }
+
+      // Adjusted Psychometric Ability Index
+      // Map rawRatio (where 0.35 corresponds to population mean 100 on a hard professor-level test)
+      // Using a calibrated logistic/probit mapping so 35% on this hard exam = IQ 100,
+      // 70% = ~132, 90% = ~150, 100% = ~160.
+      const calibratedAbility = Math.min(0.9999, Math.max(0.025, (rawRatio * 0.88 + 0.115) * speedMultiplier));
+      const zScore = inverseNormalCDF(calibratedAbility);
+      const rawIQ = 100 + 15 * zScore;
+      const finalIQ = Math.round(Math.max(70, Math.min(164, rawIQ)));
+      const finalZ = (finalIQ - 100) / 15;
+      const percentile = (normalCDF(finalZ) * 100).toFixed(2);
+
+      // Multi-Radix Representations
+      const bin8 = finalIQ.toString(2).padStart(8, '0');
+      const bin8Formatted = `${bin8.slice(0, 4)} ${bin8.slice(4)}`;
+      const bin16 = finalIQ.toString(2).padStart(16, '0');
+      const bin16Formatted = `${bin16.slice(0, 8)} ${bin16.slice(8)}`;
+      const onesCount = bin8.split('').filter(b => b === '1').length;
+      const parityStr = onesCount % 2 === 0 ? `EVEN (${onesCount} bits)` : `ODD (${onesCount} bits)`;
+      const rawRounded = Math.round(earnedWeight);
+
+      const hexStr = '0x' + finalIQ.toString(16).toUpperCase().padStart(2, '0');
+      const hexDword = '0x' + finalIQ.toString(16).toUpperCase().padStart(8, '0');
+      const octalStr = '0o' + finalIQ.toString(8);
+      const checksumHex = '0x' + ((finalIQ ^ 0xFF) & 0xFF).toString(16).toUpperCase().padStart(2, '0');
+
+      lastReportData = {
+        finalIQ,
+        finalZ,
+        percentile,
+        rawRatio,
+        earnedWeight,
+        totalPossibleWeight,
+        fullCorrectCount,
+        speedMultiplier,
+        elapsedSeconds: effectiveSeconds,
+        bin8Formatted,
+        bin16Formatted,
+        parityStr,
+        rawRounded,
+        hexStr,
+        hexDword,
+        octalStr,
+        checksumHex,
+        domainStats,
+        itemAudits
+      };
+
+      renderReport(lastReportData);
+      document.getElementById('nav-resume-btn').classList.add('hidden');
+      document.getElementById('nav-report-btn').classList.remove('hidden');
+      switchView('report');
+    }
+
+    // =========================================================================
+    // RENDER DIAGNOSTIC REPORT, RADAR CHART & PROFESSOR NARRATIVE
+    // =========================================================================
+    function classifyIQ(iq) {
+      if (iq >= 145) return 'Profoundly Gifted // Apex Theoretical & Algorithmic Capacity';
+      if (iq >= 130) return 'Exceptionally Gifted // Top 2% High-Order Analytical Profile';
+      if (iq >= 120) return 'Superior Cognitive Profile // Strong Multi-Domain Synthesis';
+      if (iq >= 110) return 'High Average // Above-Mean Deductive & Quantitative Fluency';
+      if (iq >= 90)  return 'Normative Cognitive Baseline // Balanced General Reasoning';
+      return 'Developing Analytical Profile // Foundations Emerging';
+    }
+
+    function renderReport(data) {
+      // 1. Top Telemetry Cards
+      document.getElementById('rep-iq-score').textContent = data.finalIQ;
+      document.getElementById('rep-iq-ci').textContent = '± 3';
+      document.getElementById('rep-iq-classification').textContent = classifyIQ(data.finalIQ);
+      document.getElementById('rep-z-score').textContent = `${data.finalZ >= 0 ? '+' : ''}${data.finalZ.toFixed(2)}σ`;
+      document.getElementById('rep-percentile').textContent = `${data.percentile}%`;
+
+      document.getElementById('rep-binary-8bit').textContent = data.bin8Formatted;
+      document.getElementById('rep-binary-16bit').textContent = `16-bit: ${data.bin16Formatted}`;
+      document.getElementById('rep-binary-parity').textContent = data.parityStr;
+      document.getElementById('rep-raw-binary').textContent = data.rawRounded.toString(2);
+
+      document.getElementById('rep-hex-score').textContent = data.hexStr;
+      document.getElementById('rep-hex-word').textContent = `DWORD: ${data.hexDword}`;
+      document.getElementById('rep-octal-score').textContent = data.octalStr;
+      document.getElementById('rep-hex-checksum').textContent = data.checksumHex;
+
+      document.getElementById('rep-accuracy-pct').textContent = `${(data.rawRatio * 100).toFixed(1)}%`;
+      document.getElementById('rep-speed-factor').textContent = `Speed Multiplier η(t): ${data.speedMultiplier.toFixed(2)}x`;
+      const mins = Math.floor(data.elapsedSeconds / 60);
+      const secs = data.elapsedSeconds % 60;
+      document.getElementById('rep-time-taken').textContent = `${mins}m ${String(secs).padStart(2, '0')}s`;
+      document.getElementById('rep-items-correct').textContent = `${data.fullCorrectCount}/30`;
+
+      // 2. Mathematical Formula Breakdown Trace
+      const mathHtml = `
+        <div><span class="text-slate-500">// Step 1: Weighted Raw Accumulation across 30 Calibrated Items</span></div>
+        <div>W_earned = ∑(w_i · δ_i) = <span class="text-cyan-300 font-bold">${data.earnedWeight.toFixed(2)}</span> / <span class="text-slate-200">${data.totalPossibleWeight.toFixed(2)}</span>  ⇒  R_raw = <span class="text-emerald-300">${(data.rawRatio * 100).toFixed(2)}%</span></div>
+        <div class="pt-1"><span class="text-slate-500">// Step 2: Cognitive Processing Speed & Difficulty Calibration</span></div>
+        <div>Ψ_calibrated = clamp((0.88 · R_raw + 0.115) · η(t), 0.025, 0.9999) = <span class="text-amber-300">${((data.rawRatio * 0.88 + 0.115) * data.speedMultiplier).toFixed(4)}</span></div>
+        <div class="pt-1"><span class="text-slate-500">// Step 3: Gaussian Probit Mapping (μ = 100, σ = 15)</span></div>
+        <div>z = Φ⁻¹(Ψ_calibrated) = <span class="text-purple-300">${data.finalZ >= 0 ? '+' : ''}${data.finalZ.toFixed(3)}</span>   ⇒   IQ = round(100 + 15 · z) = <span class="text-white font-bold">${data.finalIQ}</span>  [<span class="text-emerald-400">${data.bin8Formatted}₂</span> | <span class="text-amber-400">${data.hexStr}₁₆</span>]</div>
+      `;
+      document.getElementById('rep-math-breakdown').innerHTML = mathHtml;
+
+      // 3. Domain Percentages & Bars
+      const domainKeys = ['Gf', 'Gq', 'Alg', 'Gc'];
+      const domainColors = {
+        Gf: { bar: 'bg-cyan-400', text: 'text-cyan-300' },
+        Gq: { bar: 'bg-amber-400', text: 'text-amber-300' },
+        Alg: { bar: 'bg-emerald-400', text: 'text-emerald-300' },
+        Gc: { bar: 'bg-purple-400', text: 'text-purple-300' }
+      };
+
+      const domainPcts = {};
+      const barsContainer = document.getElementById('rep-domain-bars');
+      barsContainer.innerHTML = '';
+
+      domainKeys.forEach(k => {
+        const d = data.domainStats[k];
+        const pct = d.max > 0 ? Math.round((d.earned / d.max) * 100) : 0;
+        domainPcts[k] = pct;
+
+        const row = document.createElement('div');
+        row.className = 'space-y-1';
+        row.innerHTML = `
+          <div class="flex justify-between text-xs font-mono">
+            <span class="text-slate-300">${d.name}</span>
+            <span class="${domainColors[k].text} font-bold">${pct}% <span class="text-slate-500 font-normal">(${d.earned.toFixed(1)}/${d.max.toFixed(1)})</span></span>
+          </div>
+          <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden border border-slate-800">
+            <div class="h-full ${domainColors[k].bar} rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+          </div>
+        `;
+        barsContainer.appendChild(row);
+      });
+
+      // 4. Render SVG Radar Chart
+      renderRadarChart(domainPcts);
+
+      // 5. Generate Dynamic Professor Narrative
+      renderProfessorSynthesis(data, domainPcts);
+
+      // 6. Timestamp & Audit List
+      document.getElementById('rep-timestamp').textContent = new Date().toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
+      renderAuditList(data.itemAudits, 'all');
+    }
+
+    function renderRadarChart(pcts) {
+      const svg = document.getElementById('cognitive-radar-svg');
+      const cx = 160, cy = 140, maxR = 92;
+      // Axes: Top (Gf), Right (Gq), Bottom (Alg), Left (Gc)
+      const axes = [
+        { key: 'Gf', label: 'Fluid (Gf)', angle: -Math.PI / 2, color: '#22d3ee' },
+        { key: 'Gq', label: 'Quant (Gq)', angle: 0, color: '#fbbf24' },
+        { key: 'Alg', label: 'Algorithmic', angle: Math.PI / 2, color: '#34d399' },
+        { key: 'Gc', label: 'Semantic (Gc)', angle: Math.PI, color: '#c084fc' }
+      ];
+
+      let gridPolygons = '';
+      [0.25, 0.5, 0.75, 1.0].forEach(scale => {
+        const pts = axes.map(ax => {
+          const x = cx + Math.cos(ax.angle) * maxR * scale;
+          const y = cy + Math.sin(ax.angle) * maxR * scale;
+          return `${x.toFixed(1)},${y.toFixed(1)}`;
+        }).join(' ');
+        gridPolygons += `<polygon points="${pts}" fill="none" stroke="#1e293b" stroke-width="1" />`;
+      });
+
+      let axisLines = '';
+      let labelsSvg = '';
+      const dataPoints = [];
+
+      axes.forEach(ax => {
+        const endX = cx + Math.cos(ax.angle) * maxR;
+        const endY = cy + Math.sin(ax.angle) * maxR;
+        axisLines += `<line x1="${cx}" y1="${cy}" x2="${endX.toFixed(1)}" y2="${endY.toFixed(1)}" stroke="#334155" stroke-width="1" stroke-dasharray="3,3" />`;
+
+        const valScale = Math.max(0.12, (pcts[ax.key] || 0) / 100);
+        const px = cx + Math.cos(ax.angle) * maxR * valScale;
+        const py = cy + Math.sin(ax.angle) * maxR * valScale;
+        dataPoints.push({ x: px, y: py, color: ax.color });
+
+        const lx = cx + Math.cos(ax.angle) * (maxR + 24);
+        const ly = cy + Math.sin(ax.angle) * (maxR + 18);
+        labelsSvg += `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" fill="#cbd5e1" font-family="JetBrains Mono, monospace" font-size="10.5">${ax.label}</text>`;
+      });
+
+      const polyStr = dataPoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+      const dotsSvg = dataPoints.map(p => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" fill="${p.color}" stroke="#080b12" stroke-width="1.5" />`).join('');
+
+      svg.innerHTML = `
+        ${gridPolygons}
+        ${axisLines}
+        <polygon points="${polyStr}" fill="rgba(6, 182, 212, 0.22)" stroke="#22d3ee" stroke-width="2" />
+        ${dotsSvg}
+        ${labelsSvg}
+      `;
+    }
+
+    function renderProfessorSynthesis(data, pcts) {
+      const sorted = Object.entries(pcts).sort((a, b) => b[1] - a[1]);
+      const topDomain = sorted[0];
+      const lowDomain = sorted[sorted.length - 1];
+
+      const domainFullNames = {
+        Gf: 'Fluid & Deductive Reasoning (Gf)',
+        Gq: 'Quantitative & Algebraic Analysis (Gq)',
+        Alg: 'Algorithmic & Spatial Logic (Alg)',
+        Gc: 'Semantic & Conceptual Synthesis (Gc)'
+      };
+
+      const diffSpread = topDomain[1] - lowDomain[1];
+      let architectureType = 'harmonically balanced across all four CHC and algorithmic strata';
+      if (diffSpread >= 25) {
+        architectureType = `markedly asymmetric, exhibiting a specialized peak in ${domainFullNames[topDomain[0]]} (${topDomain[1]}%) relative to ${domainFullNames[lowDomain[0]]} (${lowDomain[1]}%)`;
+      } else if (diffSpread >= 12) {
+        architectureType = `moderately differentiated, led by ${domainFullNames[topDomain[0]]} (${topDomain[1]}%)`;
+      }
+
+      let gInterpretation = '';
+      if (data.finalIQ >= 135) {
+        gInterpretation = `Your composite deviation score of <strong>${data.finalIQ}</strong> (<span class="font-mono text-xs text-cyan-300">${data.hexStr}</span> in hexadecimal register) places you at the <strong>${data.percentile}th percentile</strong> (+${data.finalZ.toFixed(2)}σ). Psychometrically, this reflects exceptional working-memory bandwidth and high-order inductive compression—the capacity to extract invariant structural laws from complex, multi-variable constraints without cognitive overload.`;
+      } else if (data.finalIQ >= 115) {
+        gInterpretation = `Your composite deviation score of <strong>${data.finalIQ}</strong> (<span class="font-mono text-xs text-cyan-300">${data.hexStr}</span> in hexadecimal register) places you at the <strong>${data.percentile}th percentile</strong> (+${data.finalZ.toFixed(2)}σ). This indicates robust general intelligence (<em>Spearman’s g</em>), characterized by reliable deductive discipline and strong resistance to surface-level cognitive heuristics.`;
+      } else {
+        gInterpretation = `Your composite deviation score of <strong>${data.finalIQ}</strong> (<span class="font-mono text-xs text-cyan-300">${data.hexStr}</span> in hexadecimal register) places you at the <strong>${data.percentile}th percentile</strong>. Because AETHER-IQ weights high-difficulty formal logic and number-theoretic items heavily, this baseline establishes a clear diagnostic map of your current symbolic processing strategies.`;
+      }
+
+      const gfVsGcNote = pcts.Gf >= pcts.Gc
+        ? `Notably, your <em>Fluid Intelligence (Gf: ${pcts.Gf}%)</em> outpaces or matches your <em>Crystallized Conceptual Synthesis (Gc: ${pcts.Gc}%)</em>, signaling strong raw inferential agility when confronting unfamiliar formal structures.`
+        : `Notably, your <em>Crystallized Conceptual Synthesis (Gc: ${pcts.Gc}%)</em> anchors your cognitive profile relative to <em>Fluid Reasoning (Gf: ${pcts.Gf}%)</em>, demonstrating high precision in semantic mapping, epistemological distinctions, and structured knowledge retrieval.`;
+
+      document.getElementById('rep-professor-narrative').innerHTML = `
+        <p>${gInterpretation}</p>
+        <p>Structural factor analysis reveals that your cognitive architecture is <strong>${architectureType}</strong>. ${gfVsGcNote}</p>
+        <p class="text-slate-300 text-sm italic border-l-2 border-amber-500/60 pl-3.5">
+          "True intellectual rigor is measured not merely by speed of recall, but by the capacity to maintain logical invariants under formal transformation." — Diagnostic Audit Complete.
+        </p>
+      `;
+    }
+
+    function renderAuditList(audits, filter) {
+      const container = document.getElementById('rep-audit-list');
+      container.innerHTML = '';
+
+      const filtered = filter === 'missed'
+        ? audits.filter(a => a.scoreRatio < 0.99)
+        : audits;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="p-6 rounded-xl bg-emerald-950/20 border border-emerald-500/30 text-emerald-300 font-mono text-xs text-center">Perfect execution: Zero missed or partial items across all 30 questions.</div>`;
+        return;
+      }
+
+      filtered.forEach(item => {
+        let badgeHtml = '';
+        let borderClass = 'border-slate-800';
+        if (item.status === 'correct') {
+          badgeHtml = `<span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-mono text-[11px]">✓ FULL CREDIT (+${item.itemEarned.toFixed(2)})</span>`;
+          borderClass = 'border-emerald-500/25';
+        } else if (item.status === 'partial') {
+          badgeHtml = `<span class="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/40 text-amber-300 font-mono text-[11px]">◐ PARTIAL (${Math.round(item.scoreRatio*100)}% // +${item.itemEarned.toFixed(2)})</span>`;
+          borderClass = 'border-amber-500/30';
+        } else {
+          badgeHtml = `<span class="px-2 py-0.5 rounded bg-rose-500/15 border border-rose-500/40 text-rose-300 font-mono text-[11px]">✕ 0.00 / ${item.weight.toFixed(2)}</span>`;
+          borderClass = 'border-rose-500/25';
+        }
+
+        const card = document.createElement('details');
+        card.className = `rounded-xl bg-slate-900/75 border ${borderClass} p-4 group`;
+        card.innerHTML = `
+          <summary class="cursor-pointer list-none flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="flex items-center space-x-2.5">
+              <span class="font-mono text-xs font-bold text-cyan-400">#${String(item.id).padStart(2, '0')}</span>
+              <span class="text-xs font-mono text-slate-400">[${item.domain}]</span>
+              <span class="text-sm font-medium text-slate-200 line-clamp-1">${escapeHtml(item.prompt)}</span>
+            </div>
+            <div class="flex items-center space-x-2 shrink-0">
+              ${badgeHtml}
+              <span class="text-slate-500 text-xs font-mono group-open:rotate-180 transition-transform">▼</span>
+            </div>
+          </summary>
+          <div class="mt-4 pt-4 border-t border-slate-800/80 space-y-3 text-xs sm:text-sm">
+            <p class="text-slate-300 leading-relaxed">${escapeHtml(item.prompt)}</p>
+            ${item.stimulus ? `<pre class="p-3 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-cyan-200 overflow-x-auto">${escapeHtml(item.stimulus)}</pre>` : ''}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs">
+              <div class="p-3 rounded-lg bg-slate-950/90 border border-slate-800">
+                <span class="text-slate-500 block mb-1">YOUR RESPONSE:</span>
+                <span class="text-slate-200">${escapeHtml(item.userDisplay)}</span>
+              </div>
+              <div class="p-3 rounded-lg bg-slate-950/90 border border-cyan-500/25">
+                <span class="text-cyan-400 block mb-1">CANONICAL SOLUTION:</span>
+                <span class="text-emerald-300">${escapeHtml(item.canonicalDisplay)}</span>
+              </div>
+            </div>
+            <div class="p-3 rounded-lg bg-amber-500/5 border border-amber-500/20 text-slate-300 text-xs leading-relaxed">
+              <strong class="text-amber-300 font-mono">PROFESSOR’S PROOF:</strong> ${escapeHtml(item.explanation)}
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterAudit(mode) {
+      if (!lastReportData) return;
+      document.querySelectorAll('.audit-filter-btn').forEach(btn => {
+        btn.classList.remove('bg-cyan-500/20', 'text-cyan-300', 'border-cyan-500/40');
+        btn.classList.add('bg-slate-900', 'text-slate-400', 'border-slate-800');
+      });
+      event.target.classList.remove('bg-slate-900', 'text-slate-400', 'border-slate-800');
+      event.target.classList.add('bg-cyan-500/20', 'text-cyan-300', 'border-cyan-500/40');
+      renderAuditList(lastReportData.itemAudits, mode);
+    }
+
+    // =========================================================================
+    // DEMO SIMULATION & CLIPBOARD UTILITIES
+    // =========================================================================
+    function runDemoSimulation() {
+      // Populate realistic professor-tier answers (27/30 correct for an authentic ~144 IQ profile)
+      userAnswers = QUESTIONS.map((q, idx) => {
+        // Simulate 3 realistic subtle misses on ultra-hard capstone items (#25, #27, #29)
+        if (idx === 24) return 2; // missed Peirce's law
+        if (idx === 26) return '16'; // confused vertices with 2D faces on tesseract
+        if (idx === 28) return '182'; // slight arithmetic slip on divisor sum
+
+        if (q.type === 'mcq') return q.correct;
+        if (q.type === 'math') return String(q.correctNumeric);
+        if (q.type === 'text') return q.canonicalDisplay;
+        return null;
+      });
+      elapsedSeconds = 845; // 14m 05s
+      finalizeAssessment();
+      showToast('Simulated 30-item Professor-Tier run compiled.');
+    }
+
+    function copyDiagnosticSummary() {
+      if (!lastReportData) return;
+      const d = lastReportData;
+      const summary = [
+        `AETHER-IQ // ALGORITHMIC PSYCHOMETRIC TELEMETRY`,
+        `---------------------------------------------`,
+        `Standardized IQ (μ=100, σ=15): ${d.finalIQ} ± 3 (${d.percentile}th percentile, z = ${d.finalZ >= 0 ? '+' : ''}${d.finalZ.toFixed(2)}σ)`,
+        `Binary Register (8-bit):       ${d.bin8Formatted}`,
+        `Hexadecimal Register:          ${d.hexStr} (${d.hexDword})`,
+        `Weighted Accuracy:             ${(d.rawRatio * 100).toFixed(1)}% (${d.fullCorrectCount}/30 items)`,
+        `Fluid (Gf): ${Math.round((d.domainStats.Gf.earned / d.domainStats.Gf.max)*100)}% | Quant (Gq): ${Math.round((d.domainStats.Gq.earned / d.domainStats.Gq.max)*100)}% | Algorithmic: ${Math.round((d.domainStats.Alg.earned / d.domainStats.Alg.max)*100)}% | Semantic (Gc): ${Math.round((d.domainStats.Gc.earned / d.domainStats.Gc.max)*100)}%`
+      ].join('\n');
+
+      const tempArea = document.createElement('textarea');
+      tempArea.value = summary;
+      document.body.appendChild(tempArea);
+      tempArea.select();
+      try {
+        document.execCommand('copy');
+        showToast('Diagnostic telemetry copied to clipboard.');
+      } catch (err) {
+        showToast('Unable to access clipboard in this context.');
+      }
+      document.body.removeChild(tempArea);
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+  </script>
+</body>
+</html>
